@@ -1,0 +1,15 @@
+name: CI
+
+on:
+  pull_request:
+    branches: [dev, pre-prod, prod]
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Récupérer le code
+        uses: actions/checkout@v4
+
+      - name: Vérification minimale
+        run: echo "CI OK sur la branche ${{ github.head_ref }}"
