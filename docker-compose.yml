@@ -3,9 +3,9 @@ services:
     image: gvenzl/oracle-free:23-slim
     container_name: oracle-hopa
     environment:
-      ORACLE_PASSWORD: ${HOPA_SYS_PASSWORD}
+      ORACLE_PASSWORD: ${HOPA_SYS_PASSWORD:?voir .env.example}
       APP_USER: SRC_HOPA
-      APP_USER_PASSWORD: ${HOPA_APP_PASSWORD}
+      APP_USER_PASSWORD: ${HOPA_APP_PASSWORD:?voir .env.example}
     ports:
       - "1523:1521"
     volumes:
@@ -23,9 +23,9 @@ services:
     image: gvenzl/oracle-free:23-slim
     container_name: oracle-hopb
     environment:
-      ORACLE_PASSWORD: ${HOPB_SYS_PASSWORD}
+      ORACLE_PASSWORD: ${HOPB_SYS_PASSWORD:?voir .env.example}
       APP_USER: SRC_HOPB
-      APP_USER_PASSWORD: ${HOPB_APP_PASSWORD}
+      APP_USER_PASSWORD: ${HOPB_APP_PASSWORD:?voir .env.example}
     ports:
       - "1522:1521"
     volumes:

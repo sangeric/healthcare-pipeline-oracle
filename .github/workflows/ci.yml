@@ -10,7 +10,12 @@ jobs:
     steps:
       - name: Récupérer le code
         uses: actions/checkout@v4
-
+        with:
+          fetch-depth: 0 
+      - name: Détecter des secrets
+        uses: gitleaks/gitleaks-action@v2     
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Vérification minimale
         run: echo "CI OK sur la branche ${{ github.head_ref }}"
 
