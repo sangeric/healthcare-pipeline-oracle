@@ -13,3 +13,12 @@ jobs:
 
       - name: Vérification minimale
         run: echo "CI OK sur la branche ${{ github.head_ref }}"
+
+      - name: Générer des mots de passe de test
+        run: |
+          for v in HOPA_SYS_PASSWORD HOPA_APP_PASSWORD HOPB_SYS_PASSWORD HOPB_APP_PASSWORD; do
+            echo "$v=$(openssl rand -hex 16)" >> "$GITHUB_ENV"
+          done
+
+      - name: Valider docker-compose.yml
+        run: docker compose config --quiet
